@@ -1,6 +1,33 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom"
 
+const appFilters = [
+    {
+        id: 0,
+        name: 'All',
+        filter: '*',
+        class: 'filter-active',
+    },
+    {
+        id: 1,
+        name: 'App',
+        filter: '.filter-app',
+        class: '',
+    },
+    {
+        id: 2,
+        name: 'Card',
+        filter: '.filter-product',
+        class: '',
+    },
+    {
+        id: 3,
+        name: 'Web',
+        filter: '.filter-branding',
+        class: '',
+    },
+]
+
 export const portfolioItems = [
     {
         name: 'App 1',
@@ -100,6 +127,13 @@ export default function PortfolioSection() {
 
         });
     })
+
+    useEffect(function () {
+        GLightbox({
+            selector: '.glightbox'
+        });
+    })
+
     return (
         <section id="portfolio" className="portfolio">
 
@@ -114,10 +148,11 @@ export default function PortfolioSection() {
                 <div className="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
                     <ul className="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                        <li data-filter="*" className="filter-active">All</li>
-                        <li data-filter=".filter-app">App</li>
-                        <li data-filter=".filter-product">Card</li>
-                        <li data-filter=".filter-branding">Web</li>
+                        {
+                            appFilters.map(appFilters => {
+                                return <li key={appFilters.id} data-filter={appFilters.filter} className={appFilters.class + ' me-1'}>{appFilters.name}</li>
+                            })
+                        }
                     </ul>
 
                     <div className="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">

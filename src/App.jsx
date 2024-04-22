@@ -11,6 +11,7 @@ import { activate, deactivate } from './store/scrollTopSlice'
 import PortfolioDetails from './components/PortfolioDetails'
 import BlogDetails from './components/BlogDetails'
 import Preloader from './components/Preloader'
+import ServicesDetails from './components/ServicesDetails'
 
 function App() {
 
@@ -32,9 +33,11 @@ function App() {
 
   })
 
+  // updates when pathname changes
   useEffect(() => {
     // reset scroll when path changes
     window.scrollTo(0, 0)
+
     // change classes on body tag when path changes
     if (pathname === '/') {
       document.querySelector('body').setAttribute('class', 'index-page')
@@ -44,12 +47,6 @@ function App() {
     }
   }, [pathname])
 
-  useEffect(function () {
-    GLightbox({
-      selector: '.glightbox'
-    });
-  })
-
   return (
     <>
       <Header />
@@ -57,8 +54,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blog' element={<Blog />} />
-        <Route path='/blog/:blog-title' element={<BlogDetails />} />
+        <Route path='/services/:service-title' element={<ServicesDetails />} />
         <Route path='/portfolio-details/:item' element={<PortfolioDetails />} />
+        <Route path='/blog/:blog-title' element={<BlogDetails />} />
       </Routes>
       <Footer />
       <ScrollTopComponent />

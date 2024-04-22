@@ -1,3 +1,30 @@
+const iconBoxesList = [
+    {
+        id: 0,
+        icon: 'bi bi-buildings',
+        title: 'Eius provident',
+        description: 'Magni repellendus vel ullam hic officia accusantium ipsa dolor omnis dolor voluptatem'
+    },
+    {
+        id: 1,
+        icon: 'bi bi-clipboard-pulse',
+        title: 'Rerum aperiam',
+        description: 'Autem saepe animi et aut aspernatur culpa facere. Rerum saepe rerum voluptates quia'
+    },
+    {
+        id: 2,
+        icon: 'bi bi-command',
+        title: 'Veniam omnis',
+        description: 'Omnis perferendis molestias culpa sed. Recusandae quas possimus. Quod consequatur corrupti'
+    },
+    {
+        id: 3,
+        icon: 'bi bi-graph-up-arrow',
+        title: 'Delares sapiente',
+        description: 'Sint et dolor voluptas minus possimus nostrum. Reiciendis commodi eligendi omnis quideme lorenda'
+    },
+]
+
 export default function AboutSection() {
     return (
         <section id="about" className="about">
@@ -15,37 +42,17 @@ export default function AboutSection() {
                     <div className="col-xl-7">
                         <div className="row gy-4 icon-boxes">
 
-                            <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                                <div className="icon-box">
-                                    <i className="bi bi-buildings"></i>
-                                    <h3>Eius provident</h3>
-                                    <p>Magni repellendus vel ullam hic officia accusantium ipsa dolor omnis dolor voluptatem</p>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                                <div className="icon-box">
-                                    <i className="bi bi-clipboard-pulse"></i>
-                                    <h3>Rerum aperiam</h3>
-                                    <p>Autem saepe animi et aut aspernatur culpa facere. Rerum saepe rerum voluptates quia</p>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                                <div className="icon-box">
-                                    <i className="bi bi-command"></i>
-                                    <h3>Veniam omnis</h3>
-                                    <p>Omnis perferendis molestias culpa sed. Recusandae quas possimus. Quod consequatur corrupti</p>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6" data-aos="fade-up" data-aos-delay="500">
-                                <div className="icon-box">
-                                    <i className="bi bi-graph-up-arrow"></i>
-                                    <h3>Delares sapiente</h3>
-                                    <p>Sint et dolor voluptas minus possimus nostrum. Reiciendis commodi eligendi omnis quideme lorenda</p>
-                                </div>
-                            </div>
+                            {
+                                iconBoxesList.map(iconBox => {
+                                    return <div key={iconBox.id} className="col-md-6" data-aos="fade-up" data-aos-delay={`${iconBox.id + 2}00`}>
+                                        <div className="icon-box">
+                                            <i className={iconBox.icon}></i>
+                                            <h3>{iconBox.title}</h3>
+                                            <p>{iconBox.description}</p>
+                                        </div>
+                                    </div>
+                                })
+                            }
 
                         </div>
                     </div>

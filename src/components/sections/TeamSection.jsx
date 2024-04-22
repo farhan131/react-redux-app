@@ -1,3 +1,182 @@
+import { Link } from "react-router-dom"
+
+const teamList = [
+    {
+        id: 0,
+        imageUrl: 'assets/img/team/team-1.jpg',
+        social: [
+            {
+                id: 0,
+                classes: 'bi bi-twitter',
+                link: '#'
+            },
+            {
+                id: 1,
+                classes: 'bi bi-facebook',
+                link: '#'
+            },
+            {
+                id: 2,
+                classes: 'bi bi-instagram',
+                link: '#'
+            },
+            {
+                id: 3,
+                classes: 'bi bi-linkedin',
+                link: '#'
+            },
+        ],
+        name: 'Walter White',
+        designation: 'Chief Executive Officer',
+        description: 'Aliquam iure quaerat voluptatem praesentium possimus unde laudantium vel dolorum distinctio dire flow'
+    },
+    {
+        id: 1,
+        imageUrl: 'assets/img/team/team-2.jpg',
+        social: [
+            {
+                id: 0,
+                name: 'Twitter',
+                link: '#'
+            },
+            {
+                id: 1,
+                name: 'Facebook',
+                link: '#'
+            },
+            {
+                id: 2,
+                name: 'Instagram',
+                link: '#'
+            },
+            {
+                id: 3,
+                name: 'Linkedin',
+                link: '#'
+            },
+        ],
+        name: 'Sarah Jhonson',
+        designation: 'Product Manager',
+        description: 'Labore ipsam sit consequatur exercitationem rerum laboriosam laudantium aut quod dolores exercitationem ut'
+    },
+    {
+        id: 2,
+        imageUrl: 'assets/img/team/team-3.jpg',
+        social: [
+            {
+                id: 0,
+                name: 'Twitter',
+                link: '#'
+            },
+            {
+                id: 1,
+                name: 'Facebook',
+                link: '#'
+            },
+            {
+                id: 2,
+                name: 'Instagram',
+                link: '#'
+            },
+            {
+                id: 3,
+                name: 'Linkedin',
+                link: '#'
+            },
+        ],
+        name: 'Brian Doe',
+        designation: 'Marketing',
+        description: 'Qui consequuntur quos accusamus magnam quo est molestiae eius laboriosam sunt doloribus quia impedit laborum velit'
+    },
+    {
+        id: 3,
+        imageUrl: 'assets/img/team/team-4.jpg',
+        social: [
+            {
+                id: 0,
+                name: 'Twitter',
+                link: '#'
+            },
+            {
+                id: 1,
+                name: 'Facebook',
+                link: '#'
+            },
+            {
+                id: 2,
+                name: 'Instagram',
+                link: '#'
+            },
+            {
+                id: 3,
+                name: 'Linkedin',
+                link: '#'
+            },
+        ],
+        name: 'William Anderson',
+        designation: 'CTO',
+        description: 'Illum minima ea autem doloremque ipsum quidem quas aspernatur modi ut praesentium vel tque sed facilis at qui'
+    },
+    {
+        id: 4,
+        imageUrl: 'assets/img/team/team-5.jpg',
+        social: [
+            {
+                id: 0,
+                name: 'Twitter',
+                link: '#'
+            },
+            {
+                id: 1,
+                name: 'Facebook',
+                link: '#'
+            },
+            {
+                id: 2,
+                name: 'Instagram',
+                link: '#'
+            },
+            {
+                id: 3,
+                name: 'Linkedin',
+                link: '#'
+            },
+        ],
+        name: 'Amanda Jepson',
+        designation: 'Accountant',
+        description: 'Magni voluptatem accusamus assumenda cum nisi aut qui dolorem voluptate sed et veniam quasi quam consectetur'
+    },
+    {
+        id: 5,
+        imageUrl: 'assets/img/team/team-6.jpg',
+        social: [
+            {
+                id: 0,
+                name: 'Twitter',
+                link: '#'
+            },
+            {
+                id: 1,
+                name: 'Facebook',
+                link: '#'
+            },
+            {
+                id: 2,
+                name: 'Instagram',
+                link: '#'
+            },
+            {
+                id: 3,
+                name: 'Linkedin',
+                link: '#'
+            },
+        ],
+        name: 'Josepha Palas',
+        designation: 'Operation',
+        description: 'Sint sint eveniet explicabo amet consequatur nesciunt error enim rerum earum et omnis fugit eligendi cupiditate vel'
+    },
+]
+
 export default function TeamSection() {
     return (
         <section id="team" className="team">
@@ -12,107 +191,27 @@ export default function TeamSection() {
 
                 <div className="row gy-5">
 
-                    <div className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
-                        <div className="member-img">
-                            <img src="assets/img/team/team-1.jpg" className="img-fluid" alt="" />
-                            <div className="social">
-                                <a href="#"><i className="bi bi-twitter"></i></a>
-                                <a href="#"><i className="bi bi-facebook"></i></a>
-                                <a href="#"><i className="bi bi-instagram"></i></a>
-                                <a href="#"><i className="bi bi-linkedin"></i></a>
+                    {
+                        teamList.map(team => {
+                            return <div key={team.id} className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay={`${team.id + 1}00`}>
+                                <div className="member-img">
+                                    <img src={team.imageUrl} className="img-fluid" alt="" />
+                                    <div className="social">
+                                        {
+                                            team.social.map(s => {
+                                                return <Link key={s.id} to={s.link}><i className={s.classes}></i></Link>
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                                <div className="member-info text-center">
+                                    <h4>{team.name}</h4>
+                                    <span>{team.designation}</span>
+                                    <p>{team.description}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="member-info text-center">
-                            <h4>Walter White</h4>
-                            <span>Chief Executive Officer</span>
-                            <p>Aliquam iure quaerat voluptatem praesentium possimus unde laudantium vel dolorum distinctio dire flow</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
-                        <div className="member-img">
-                            <img src="assets/img/team/team-2.jpg" className="img-fluid" alt="" />
-                            <div className="social">
-                                <a href="#"><i className="bi bi-twitter"></i></a>
-                                <a href="#"><i className="bi bi-facebook"></i></a>
-                                <a href="#"><i className="bi bi-instagram"></i></a>
-                                <a href="#"><i className="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div className="member-info text-center">
-                            <h4>Sarah Jhonson</h4>
-                            <span>Product Manager</span>
-                            <p>Labore ipsam sit consequatur exercitationem rerum laboriosam laudantium aut quod dolores exercitationem ut</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
-                        <div className="member-img">
-                            <img src="assets/img/team/team-3.jpg" className="img-fluid" alt="" />
-                            <div className="social">
-                                <a href="#"><i className="bi bi-twitter"></i></a>
-                                <a href="#"><i className="bi bi-facebook"></i></a>
-                                <a href="#"><i className="bi bi-instagram"></i></a>
-                                <a href="#"><i className="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div className="member-info text-center">
-                            <h4>William Anderson</h4>
-                            <span>CTO</span>
-                            <p>Illum minima ea autem doloremque ipsum quidem quas aspernatur modi ut praesentium vel tque sed facilis at qui</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
-                        <div className="member-img">
-                            <img src="assets/img/team/team-4.jpg" className="img-fluid" alt="" />
-                            <div className="social">
-                                <a href="#"><i className="bi bi-twitter"></i></a>
-                                <a href="#"><i className="bi bi-facebook"></i></a>
-                                <a href="#"><i className="bi bi-instagram"></i></a>
-                                <a href="#"><i className="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div className="member-info text-center">
-                            <h4>Amanda Jepson</h4>
-                            <span>Accountant</span>
-                            <p>Magni voluptatem accusamus assumenda cum nisi aut qui dolorem voluptate sed et veniam quasi quam consectetur</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
-                        <div className="member-img">
-                            <img src="assets/img/team/team-5.jpg" className="img-fluid" alt="" />
-                            <div className="social">
-                                <a href="#"><i className="bi bi-twitter"></i></a>
-                                <a href="#"><i className="bi bi-facebook"></i></a>
-                                <a href="#"><i className="bi bi-instagram"></i></a>
-                                <a href="#"><i className="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div className="member-info text-center">
-                            <h4>Brian Doe</h4>
-                            <span>Marketing</span>
-                            <p>Qui consequuntur quos accusamus magnam quo est molestiae eius laboriosam sunt doloribus quia impedit laborum velit</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
-                        <div className="member-img">
-                            <img src="assets/img/team/team-6.jpg" className="img-fluid" alt="" />
-                            <div className="social">
-                                <a href="#"><i className="bi bi-twitter"></i></a>
-                                <a href="#"><i className="bi bi-facebook"></i></a>
-                                <a href="#"><i className="bi bi-instagram"></i></a>
-                                <a href="#"><i className="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div className="member-info text-center">
-                            <h4>Josepha Palas</h4>
-                            <span>Operation</span>
-                            <p>Sint sint eveniet explicabo amet consequatur nesciunt error enim rerum earum et omnis fugit eligendi cupiditate vel</p>
-                        </div>
-                    </div>
+                        })
+                    }
 
                 </div>
 

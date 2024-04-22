@@ -1,9 +1,32 @@
 import { useEffect } from "react"
 
+const statsList = [
+    {
+        id: 0,
+        count: '232',
+        name: 'Clients'
+    },
+    {
+        id: 1,
+        count: '521',
+        name: 'Projects'
+    },
+    {
+        id: 2,
+        count: '1453',
+        name: 'Hours Of Support'
+    },
+    {
+        id: 3,
+        count: '32',
+        name: 'Workers'
+    },
+]
+
 export default function StatsSection() {
     useEffect(() => {
         new PureCounter();
-    }, [])
+    })
     return (
         <section id="stats" className="stats">
 
@@ -13,33 +36,16 @@ export default function StatsSection() {
 
                 <div className="row gy-4">
 
-                    <div className="col-lg-3 col-md-6">
-                        <div className="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" className="purecounter"></span>
-                            <p>Clients</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-3 col-md-6">
-                        <div className="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" className="purecounter"></span>
-                            <p>Projects</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-3 col-md-6">
-                        <div className="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" className="purecounter"></span>
-                            <p>Hours Of Support</p>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-3 col-md-6">
-                        <div className="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" className="purecounter"></span>
-                            <p>Workers</p>
-                        </div>
-                    </div>
+                    {
+                        statsList.map(stat => {
+                            return <div key={stat.id} className="col-lg-3 col-md-6">
+                                <div className="stats-item text-center w-100 h-100">
+                                    <span data-purecounter-start="0" data-purecounter-end={stat.count} data-purecounter-duration="1" className="purecounter"></span>
+                                    <p>{stat.name}</p>
+                                </div>
+                            </div>
+                        })
+                    }
 
                 </div>
 

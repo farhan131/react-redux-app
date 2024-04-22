@@ -1,87 +1,121 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { toggle } from "../../store/mobileNavToggleSlice";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const menuItems = [
     {
+        id: 0,
+        type: 'link',
         link: '/#hero',
         text: 'Home'
     },
     {
+        id: 1,
+        type: 'link',
         link: '/#about',
         text: 'About'
     },
     {
+        id: 2,
+        type: 'link',
         link: '/#services',
         text: 'Services'
     },
     {
+        id: 3,
+        type: 'link',
         link: '/#portfolio',
         text: 'Portfolio'
     },
     {
+        id: 4,
+        type: 'link',
         link: '/#team',
         text: 'Team'
     },
     {
+        id: 5,
+        type: 'link',
         link: '/blog',
         text: 'Blog'
     },
     {
+        id: 6,
+        type: 'dropdown',
         link: '/#',
-        text: 'Dropdown'
+        text: 'Dropdown',
+        dropdownItems: [
+            {
+                id: 0,
+                type: 'link',
+                link: '/#',
+                text: 'Dropdown 1',
+            },
+            {
+                id: 1,
+                type: 'dropdown',
+                link: '/#',
+                text: 'Deep Dropdown',
+                deepDropdownItems: [
+                    {
+                        id: 0,
+                        type: 'link',
+                        link: '/#',
+                        text: 'Deep Dropdown 1',
+                    },
+                    {
+                        id: 1,
+                        type: 'link',
+                        link: '/#',
+                        text: 'Deep Dropdown 2',
+                    },
+                    {
+                        id: 2,
+                        type: 'link',
+                        link: '/#',
+                        text: 'Deep Dropdown 3',
+                    },
+                    {
+                        id: 3,
+                        type: 'link',
+                        link: '/#',
+                        text: 'Deep Dropdown 4',
+                    },
+                    {
+                        id: 4,
+                        type: 'link',
+                        link: '/#',
+                        text: 'Deep Dropdown 5',
+                    },
+                ],
+            },
+            {
+                id: 2,
+                type: 'link',
+                link: '/#',
+                text: 'Dropdown 2',
+            },
+            {
+                id: 3,
+                type: 'link',
+                link: '/#',
+                text: 'Dropdown 3',
+            },
+            {
+                id: 4,
+                type: 'link',
+                link: '/#',
+                text: 'Dropdown 4',
+            },
+        ]
     },
     {
+        id: 7,
+        type: 'link',
         link: '/#contact',
         text: 'Contact'
     }
-]
-
-const menuDropdownItems = [
-    {
-        link: '/#',
-        text: 'Dropdown 1'
-    },
-    {
-        link: '/#',
-        text: 'Deep Dropdown'
-    },
-    {
-        link: '/#',
-        text: 'Dropdown 2'
-    },
-    {
-        link: '/#',
-        text: 'Dropdown 3'
-    },
-    {
-        link: '/#',
-        text: 'Dropdown 4'
-    },
-]
-
-const menuDropdownItemsLevel2 = [
-    {
-        link: '/#',
-        text: 'Deep Dropdown 1'
-    },
-    {
-        link: '/#',
-        text: 'Deep Dropdown 2'
-    },
-    {
-        link: '/#',
-        text: 'Deep Dropdown 3'
-    },
-    {
-        link: '/#',
-        text: 'Deep Dropdown 4'
-    },
-    {
-        link: '/#',
-        text: 'Deep Dropdown 5'
-    },
 ]
 
 export default function Header() {
@@ -90,10 +124,10 @@ export default function Header() {
     useEffect(function () {
         if (hash) {
             setTimeout(() => {
-                document.querySelector(hash).scrollIntoView({ behavior: 'smooth', block: 'start' })    
+                document.querySelector(hash).scrollIntoView({ behavior: 'smooth', block: 'start' })
             }, 100);
         }
-    }, [hash, pathname])
+    }, [hash])
 
     const mobileNavToggle = useSelector(state => state.mobileNavToggle.visible)
     const dispatch = useDispatch()
@@ -107,14 +141,9 @@ export default function Header() {
     return (
         <header
             id="header"
-            className={
-                `header ${pathname === '/' ?
-                    'fixed-top' :
-                    pathname === '/blog' ?
-                        'sticky-top' :
-                        null
-                } d-flex align-items-center`
-            }
+            className={`header 
+                ${pathname === '/' ? 'fixed-top' : pathname === '/blog' ? 'sticky-top' : null} 
+                d-flex align-items-center`}
         >
             <div className="container-fluid d-flex align-items-center justify-content-between">
 
@@ -126,55 +155,58 @@ export default function Header() {
 
                 <nav id="navmenu" className="navmenu">
                     <ul>
-                        {menuItems.map(menuItem => {
-                            return menuItem.text !== 'Dropdown' ?
-                                <li key={menuItem.text}>
-                                    <Link
-                                        to={menuItem.link}
-                                        className={pathnameWithHash === menuItem.link ? 'active ' : null}
-                                    > {menuItem.text} </Link>
-                                </li> :
-                                <li
-                                    key={menuItem.text}
-                                    className={`${pathnameWithHash === menuItem.link ?
-                                        'active ' :
-                                        null
-                                        } dropdown has-dropdown`}
-                                >
-                                    <Link to={menuItem.link} >
-                                        <span>{menuItem.text}</span>
-                                        <i className="bi bi-chevron-down"></i>
-                                    </Link>
-                                    <ul className="dd-box-shadow">
-                                        {menuDropdownItems.map(menuDropdownItem => {
-                                            return menuDropdownItem.text !== 'Deep Dropdown' ?
-                                                <li key={menuDropdownItem.text} >
-                                                    <Link to={menuDropdownItem.link} >
-                                                        {menuDropdownItem.text}
-                                                    </Link>
-                                                </li> :
-                                                <li
-                                                    key={menuDropdownItem.text}
-                                                    className="dropdown has-dropdown"
-                                                >
-                                                    <Link to={menuDropdownItem.link}>
-                                                        <span>{menuDropdownItem.text}</span>
-                                                        <i className="bi bi-chevron-down"></i>
-                                                    </Link>
-                                                    <ul className="dd-box-shadow">
-                                                        {menuDropdownItemsLevel2.map(menuDropdownItemLevel2 => {
-                                                            return <li key={menuDropdownItemLevel2.text} >
-                                                                <Link to={menuDropdownItemLevel2.link} >
-                                                                    {menuDropdownItemLevel2.text}
-                                                                </Link>
-                                                            </li>
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                        })}
-                                    </ul>
-                                </li>
-                        })}
+                        {
+                            menuItems.map(menuItem => {
+                                return menuItem.type === 'link' ?
+                                    <li key={menuItem.id}>
+                                        <Link
+                                            to={menuItem.link}
+                                            className={pathnameWithHash === menuItem.link ? 'active ' : null}
+                                        > {menuItem.text} </Link>
+                                    </li> :
+                                    <li
+                                        key={menuItem.id}
+                                        className={`${pathnameWithHash === menuItem.link ? 'active ' : null} dropdown has-dropdown`}
+                                    >
+                                        <Link to={menuItem.link} >
+                                            <span>{menuItem.text}</span>
+                                            <i className="bi bi-chevron-down"></i>
+                                        </Link>
+                                        <ul className="dd-box-shadow">
+                                            {
+                                                menuItem.dropdownItems.map(dropdownItem => {
+                                                    return dropdownItem.type === 'link' ?
+                                                        <li key={dropdownItem.id} >
+                                                            <Link to={dropdownItem.link} >
+                                                                {dropdownItem.text}
+                                                            </Link>
+                                                        </li> :
+                                                        <li
+                                                            key={dropdownItem.id}
+                                                            className="dropdown has-dropdown"
+                                                        >
+                                                            <Link to={dropdownItem.link}>
+                                                                <span>{dropdownItem.text}</span>
+                                                                <i className="bi bi-chevron-down"></i>
+                                                            </Link>
+                                                            <ul className="dd-box-shadow">
+                                                                {
+                                                                    dropdownItem.deepDropdownItems.map(deepDropdownItem => {
+                                                                        return <li key={deepDropdownItem.id} >
+                                                                            <Link to={deepDropdownItem.link} >
+                                                                                {deepDropdownItem.text}
+                                                                            </Link>
+                                                                        </li>
+                                                                    })
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                })
+                                            }
+                                        </ul>
+                                    </li>
+                            })
+                        }
                     </ul>
 
                     <i
@@ -183,7 +215,7 @@ export default function Header() {
                     ></i>
                 </nav>
 
-                <a className="btn-getstarted" href="index.html#about">Get Started</a>
+                <Link to={menuItems[1].link} className="btn-getstarted">Get Started</Link>
 
             </div>
         </header>

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 
 export default function Preloader() {
+
     useEffect(() => {
         const preloader = document.querySelector('#preloader');
         if (preloader) {
@@ -9,6 +10,7 @@ export default function Preloader() {
             });
         }
     })
+    
     return (
         <div id="preloader">
             <div></div>

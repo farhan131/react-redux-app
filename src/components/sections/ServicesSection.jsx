@@ -1,3 +1,28 @@
+import { Link } from "react-router-dom";
+
+export const servicesList = [
+    {
+        serviceId: 0,
+        icon: 'bi bi-briefcase',
+        serviceName: 'Web Design'
+    },
+    {
+        serviceId: 1,
+        icon: 'bi bi-card-checklist',
+        serviceName: 'Product Management'
+    },
+    {
+        serviceId: 2,
+        icon: 'bi bi-bar-chart',
+        serviceName: 'Graphic Design'
+    },
+    {
+        serviceId: 3,
+        icon: 'bi bi-binoculars',
+        serviceName: 'Marketing'
+    },
+]
+
 export default function ServicesSection() {
     return (
         <section id="services" className="services">
@@ -11,66 +36,25 @@ export default function ServicesSection() {
 
                 <div className="row gy-4">
 
-                    <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
-                        <div className="service-item d-flex">
-                            <div className="icon flex-shrink-0"><i className="bi bi-briefcase"></i></div>
-                            <div>
-                                <h4 className="title"><a href="services-details.html" className="stretched-link">Lorem Ipsum</a></h4>
-                                <p className="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                    {
+                        servicesList.map((service, i) => {
+                            return <div key={service.serviceId} className="col-lg-6 " data-aos="fade-up" data-aos-delay={`${i}00`}>
+                                <div className="service-item d-flex">
+                                    <div className="icon flex-shrink-0">
+                                        <i className={service.icon}></i>
+                                    </div>
+                                    <div>
+                                        <h4 className="title">
+                                            <Link to={`/services/${service.serviceName.toLowerCase().replaceAll(' ', '-')}`} className="stretched-link">{service.serviceName}</Link>
+                                        </h4>
+                                        <p className="description">
+                                            Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-
-                    <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
-                        <div className="service-item d-flex">
-                            <div className="icon flex-shrink-0"><i className="bi bi-card-checklist"></i></div>
-                            <div>
-                                <h4 className="title"><a href="services-details.html" className="stretched-link">Dolor Sitema</a></h4>
-                                <p className="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="300">
-                        <div className="service-item d-flex">
-                            <div className="icon flex-shrink-0"><i className="bi bi-bar-chart"></i></div>
-                            <div>
-                                <h4 className="title"><a href="services-details.html" className="stretched-link">Sed ut perspiciatis</a></h4>
-                                <p className="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="400">
-                        <div className="service-item d-flex">
-                            <div className="icon flex-shrink-0"><i className="bi bi-binoculars"></i></div>
-                            <div>
-                                <h4 className="title"><a href="services-details.html" className="stretched-link">Magni Dolores</a></h4>
-                                <p className="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="500">
-                        <div className="service-item d-flex">
-                            <div className="icon flex-shrink-0"><i className="bi bi-brightness-high"></i></div>
-                            <div>
-                                <h4 className="title"><a href="services-details.html" className="stretched-link">Nemo Enim</a></h4>
-                                <p className="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="600">
-                        <div className="service-item d-flex">
-                            <div className="icon flex-shrink-0"><i className="bi bi-calendar4-week"></i></div>
-                            <div>
-                                <h4 className="title"><a href="services-details.html" className="stretched-link">Eiusmod Tempor</a></h4>
-                                <p className="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-                            </div>
-                        </div>
-                    </div>
+                        })
+                    }
 
                 </div>
 

@@ -1,4 +1,3 @@
-import { blogList } from "./Blog"
 import { Link, useLocation } from 'react-router-dom'
 import BlogComment from "./BlogComment";
 import BlogSidebar from "./BlogSidebar";
